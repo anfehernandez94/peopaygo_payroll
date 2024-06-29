@@ -11,6 +11,9 @@
             <strong>{{ session('success')}}</strong>
         </span>
         @endif
+        <a href="{{route('customer.create')}}">
+            <button type="button" class="btn btn-primary">Create</button>
+        </a>
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -26,16 +29,18 @@
                     <th scope="row">{{$item->id}}</th>
                     <td>{{$item->business_name}}</td>
                     <td>{{$item->email}}</td>
-                    <td>
-                        <a href="{{route('customer.show',$item->id)}}">
+                    <td class="row" style="width: fit-content;">
+                        <a class="col" href="{{route('customer.show',$item->id)}}">
                             <button type="button" class="btn btn-primary">Show</button>
                         </a>
-                        <a href="{{route('customer.edit',$item->id)}}">
+                        <a class="col" href="{{route('customer.edit',$item->id)}}">
                             <button type="button" class="btn btn-primary">Edit</button>
                         </a>
-                        <a href="{{route('customer.destroy',$item->id)}}">
-                            <button type="button" class="btn btn-danger">Delete</button>
-                        </a>
+                        <form class="col" action="{{ route('customer.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete it?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
                     </td>
                 </tr>
                 @endforeach
