@@ -12,8 +12,10 @@ class Timesheet extends Model
     // Define the fillable attributes
     protected $fillable = [
         'customer_id',
-        'name',
-        'pay_type',
-        'pay_rate',
+        'pay_period_init',
+        'pay_period_end',
+        'check',
+        'status',
+        'note'
     ];
 }

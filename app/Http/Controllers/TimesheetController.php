@@ -41,7 +41,7 @@ class TimesheetController extends Controller
 
         Timesheet::create($request->all());
 
-        return redirect()->route('timesheets.index')->with('success', 'Timesheet created');
+        return redirect()->route('timesheet.index')->with('success', 'Timesheet created');
     }
 
     /**
@@ -80,7 +80,7 @@ class TimesheetController extends Controller
 
         $timesheet->update($request->all());
 
-        return redirect()->route('timesheets.index')->with('success', 'Timesheet updated');
+        return redirect()->route('timesheet.index')->with('success', 'Timesheet updated');
     }
 
     /**
