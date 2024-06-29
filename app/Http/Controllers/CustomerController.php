@@ -72,7 +72,7 @@ class CustomerController extends Controller
             'business_name' => 'required|string|max:191',
         ]);
 
-        $customer = Customer::find($id);
+        $customer = Customer::findOrFail($id);
 
         $customer->password = $request->password;
         $customer->business_name = $request->business_name;

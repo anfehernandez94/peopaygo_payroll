@@ -1,6 +1,10 @@
 <?php
 
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\EmployeeTimesheetController;
+use App\Http\Controllers\TimesheetController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,5 +22,7 @@ Route::get('/', function () {
     return view('app');
 });
 
-// Customers
 Route::resource("customer", CustomerController::class);
+Route::resource("employee", EmployeeController::class);
+Route::resource("timesheet", TimesheetController::class);
+Route::resource("payroll", EmployeeTimesheetController::class);
