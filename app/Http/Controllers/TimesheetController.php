@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
+use App\Models\Employee;
+use App\Models\Payroll;
 use Illuminate\Http\Request;
 use App\Models\Timesheet;
-use Ramsey\Uuid\Type\Time;
 
 class TimesheetController extends Controller
 {
@@ -93,5 +95,20 @@ class TimesheetController extends Controller
         $timesheet->delete();
 
         return redirect()->route('timesheet.index')->with('success', 'Timesheet deleted');
+    }
+
+
+
+    public function showPayroll($id)
+    {
+        $timesheet = Timesheet::findOrFail($id);
+
+        $customer = Customer::with('employees')->findOrFail($timesheet->customer_id);
+        $employees = $customer->employees;
+
+        $timesheets = Timesheet::with("payrolls")->findOrFail($id);
+        $payrolls = $timesheets->payrolls;
+
+        return view('payroll.index', compact('payrolls', 'timesheet', 'employees'));
     }
 }

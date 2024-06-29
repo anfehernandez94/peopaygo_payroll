@@ -16,4 +16,14 @@ class Employee extends Model
         'pay_type',
         'pay_rate',
     ];
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
+
+    public function payrolls()
+    {
+        return $this->hasMany(Payroll::class);
+    }
 }

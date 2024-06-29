@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('employee__timesheets', function (Blueprint $table) {
+        Schema::create('payrolls', function (Blueprint $table) {
             $table->id();
             $table->foreignId("timesheet_id")->constrained();
             $table->foreignId("employee_id")->constrained();
-            $table->float("hour_worked", 8, 2, true);
+            $table->float("hour_worked", 8, 2, true)->nullable();
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('employee__timesheets');
+        Schema::dropIfExists('payrolls');
     }
 };

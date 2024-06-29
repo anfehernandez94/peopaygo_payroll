@@ -11,6 +11,7 @@
 
 <body class="bg-gray-100">
     @yield("content")
+    @yield("scripts")
 </body>
 
 </html>

@@ -30,8 +30,11 @@
                     <td>{{$item->business_name}}</td>
                     <td>{{$item->email}}</td>
                     <td class="row" style="width: fit-content;">
-                        <a class="col" href="{{route('customer.show',$item->id)}}">
-                            <button type="button" class="btn btn-primary">Show</button>
+                        <a class="col" href="{{route('customer.employees',$item->id)}}">
+                            <button type="button" class="btn btn-primary">Employees</button>
+                        </a>
+                        <a class="col" href="{{route('customer.timesheets',$item->id)}}">
+                            <button type="button" class="btn btn-primary">Timesheets</button>
                         </a>
                         <a class="col" href="{{route('customer.edit',$item->id)}}">
                             <button type="button" class="btn btn-primary">Edit</button>

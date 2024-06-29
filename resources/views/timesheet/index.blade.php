@@ -34,7 +34,10 @@
                     <td>{{$item->status}}</td>
                     <td>{{$item->note}}</td>
                     <td class="row" style="width: fit-content;">
-                        <a class="col" href="{{route('timesheet.edit',$item->id)}}">
+                        <a class="col" href="{{route('timesheet.payroll',$item->id)}}">
+                            <button type="button" class="btn btn-primary">Payroll</button>
+                        </a>
+                        <a class="col" href="{{route('timesheet.payroll',$item->id)}}">
                             <button type="button" class="btn btn-primary">Edit</button>
                         </a>
                         <form class="col" action="{{ route('timesheet.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete it?');">

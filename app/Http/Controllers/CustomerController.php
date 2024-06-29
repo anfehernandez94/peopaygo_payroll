@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Customer;
+use App\Models\Employee;
+use App\Models\Timesheet;
 
 class CustomerController extends Controller
 {
@@ -91,6 +93,33 @@ class CustomerController extends Controller
         $customer->delete();
 
         return redirect()->route('customer.index')->with('success', 'Customer deleted');
-   
+    }
+
+    public function showTimesheets($id)
+    {
+        // Find the customer by ID with their timesheets eager loaded
+        $customer = Customer::with('timesheets')->findOrFail($id);
+
+        // Pass customer and their timesheets to the view
+        return view('customer.timesheets', compact('customer'));
+    }
+
+    public function showEmployees($id)
+    {
+        // Find the customer by ID with their timesheets eager loaded
+        $customer = Customer::with('employees')->findOrFail($id);
+
+        // Pass customer and their timesheets to the view
+        return view('customer.employees', compact('customer'));
+    }
+
+    public function showPayrolls($id, $timesheetId)
+    {
+        $customer = Customer::with('employees')->findOrFail($id);
+        $employees = $customer->employees;
+        $timesheets = Timesheet::findOrFail($id);
+
+        return view('payroll.index', compact('timesheets', 'employees'));
+
     }
 }
